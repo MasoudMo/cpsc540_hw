@@ -8,9 +8,7 @@ function sampleBernoulli(t, theta=0.12)
     for i in 1:t
         uniform_sample = rand();
 
-        if uniform_sample > theta
-            samples[i] = 0;
-        else
+        if uniform_sample <= theta
             samples[i] = 1;
         end
     end

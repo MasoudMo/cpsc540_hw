@@ -1,0 +1,23 @@
+using JLD
+using Printf
+
+include("sampleBernoulli.jl")
+
+theta = 0.12;
+total_num_samples = 0
+num_trials = 100000
+
+for n in 1:num_trials
+    num_ones = 0
+    num_samples = 0
+    while num_ones < 10
+        sample = sampleBernoulli(1, theta);
+        num_samples += 1
+        if sample[1] == 1
+            num_ones += 1
+        end
+    end
+    global total_num_samples += num_samples
+end
+
+@printf("Number of samples to get 10 successes %.4f\n", total_num_samples/num_trials)
