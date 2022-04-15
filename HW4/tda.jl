@@ -5,6 +5,10 @@ include("studentT.jl")
 function tda(X,y,k)
   # Implementation of TDA
 
+  # Center the data first
+  Xmean = mean(X, dims=1)
+  X = X .- Xmean
+
   # Extract number of samples and their dimension
   d = size(X, 2)
   n = size(X, 1)
@@ -20,6 +24,10 @@ function tda(X,y,k)
   end
 
   function predict(Xhat)
+
+    # Center the data
+    Xhat = Xhat .- Xmean
+
     t = size(Xhat, 1)
     probs = zeros((t, k))
 

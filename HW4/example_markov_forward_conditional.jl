@@ -31,7 +31,7 @@ state_of_interest = samples[:, 5]
 # Find the marginal probabilities
 for i in 1:k
     n_i = sum(state_of_interest .== i)
-    @printf("MC Estimated probability of %d th category is %f \n", i, n_i/num_sims)
+    @printf("MC Estimated probability of %d th category is %f \n", i, n_i/accepted_samples)
 end
 
 # Exact forward conditional with fb algortihm

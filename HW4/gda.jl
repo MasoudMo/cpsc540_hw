@@ -5,6 +5,10 @@ using Distributions
 function gda(X,y,k)
   # Implementation of GDA
 
+  # Center the data first
+  Xmean = mean(X, dims=1)
+  X = X .- Xmean
+
   # Extract number of samples and their dimension
   d = size(X, 2)
   n = size(X, 1)
@@ -20,10 +24,14 @@ function gda(X,y,k)
     nc = sum(y .== c)
     pis[c] = nc / n
     mus[c, :] = sum(X[y.==c, :], dims=1) ./ nc
+    # sigmas[c, :, :] = cov(X[y.==c, :])
     sigmas[c, :, :] = transpose(X[y.==c, :] .- mus[c]) * (X[y.==c, :] .- mus[c]) ./ nc
   end
 
   function predict(Xhat)
+    # Center the data
+    Xhat = Xhat .- Xmean
+
     t = size(Xhat, 1)
     yhat = zeros(t)
 

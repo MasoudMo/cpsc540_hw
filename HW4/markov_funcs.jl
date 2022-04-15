@@ -58,6 +58,9 @@ function fb_algorithm(p1, pt, k, d, cond, j)
         end
     end
 
+    # Normalizing constant
+    Z = 
+
     # Populate the V matrix
     for step in d-1:-1:1
         for xj in 1:k
@@ -67,6 +70,6 @@ function fb_algorithm(p1, pt, k, d, cond, j)
         end
     end
 
-    prob = M[:, j] .* V[:, j]
+    prob = M[:, j] .* V[:, j] ./ sum(M[:, j] .* V[:, j])
     return prob
 end

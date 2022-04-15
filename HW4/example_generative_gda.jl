@@ -5,9 +5,6 @@ using Distributions
 data = load("gaussNoise.jld")
 (X,y,Xtest,ytest) = (data["X"],data["y"],data["Xtest"],data["ytest"])
 
-X = X .- mean(X)
-Xtest = Xtest .- mean(Xtest)
-
 include("gda.jl")
 model = gda(X,y,maximum(y))
 
